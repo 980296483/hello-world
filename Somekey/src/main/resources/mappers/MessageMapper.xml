@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="cn.feng.mapper.MessageDAO">
+ 	 <insert id="addMessage" parameterType="cn.feng.bean.Message">
+		insert into test values(#{number},#{date},#{id},#{name},#{sex})
+	</insert>
+	<select id="findAll" resultType="cn.feng.bean.Message">
+		select * from test
+	</select>  
+	<select id="selectCount" resultType="int">
+        select count(*) from test
+    </select>
+    
+    <select id="findByPage" parameterType="Map" resultType="cn.feng.bean.Message">
+        select
+        	*
+        from test
+            limit #{start},#{size}
+    </select>
+    
+    <select id="selectUserList" resultType="cn.feng.bean.Message">
+        select
+       		 *
+        from test
+    </select>
+    
+    <delete id="delete" parameterType="String">
+    	delete from test
+        where NUMBER=#{number}
+    </delete>
+    
+    <update id="update" parameterType="cn.feng.bean.Message">
+    	update test set DATE=#{date},ID=#{id},NAME=#{name},SEX=#{sex} where NUMBER=#{number}
+    </update>
+    
+    <select id="finm" parameterType="String" resultType="cn.feng.bean.Message">
+    	select * from test where NAME like '%' #{name} '%'
+    </select>
+    <select id="findOne" parameterType="String" resultType="cn.feng.bean.Message">
+    	select * from test where NUMBER=#{number}
+    </select>
+</mapper>
